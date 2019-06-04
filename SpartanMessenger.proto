@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+import "google/protobuf/any.proto";
+
+import "google/protobuf/timestamp.proto";
+
+package messenger;
+
+service Messenger {
+    rpc message(SendMessage) returns (Response);
+    rpc receive(Receive) returns (stream ChatResponse);
+    rpc login(LoginRequest) returns (Response);
+    rpc group(GroupRequest) returns (GroupResponse);
+}
+
+message GroupRequest {
+    string userName = 1;
+}
+
+
+message GroupResponse {
+    string group = 1;
+    string users = 2;
+}
+
+
+message LoginRequest {
+    string user = 1;
+}
+
+message SendMessage {
+    bytes message = 1;
+    string sender = 2;
+    string receiver = 3;
+    google.protobuf.Timestamp timestamp = 4;
+}
+
+message Response {
+    string messages = 1;
+//    google.protobuf.Timestamp timestamp = 2;
+}
+
+message Receive {
+
+    string sender = 2;
+    string receiver = 3;
+}
+
+message ChatResponse {
+//    google.protobuf.Timestamp timestamp = 1;
+    bytes messages = 2;
+    string sender = 3;
+//    string recipient = 4;
+}
