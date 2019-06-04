@@ -11,3 +11,7 @@ Supports group chat with the users of the following lists
 
 * Group 1: [alice,bob,charlie,eve]
 * Group 2: [foo,bar,baz,qux]
+
+Run server first in a seperate terminal using: python server.py
+
+then run each additional client/user in terminals using: python client.py *username*
